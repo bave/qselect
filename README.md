@@ -5,7 +5,7 @@ quick_select (nth_element)
 ## Cargo.toml
 ```toml
 [dependencies]
-binheap = { git = "https://github.com/bave/qselect.git" }
+qselect = { git = "https://github.com/bave/qselect.git" }
 ```
 
 ## example
