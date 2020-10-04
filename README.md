@@ -2,6 +2,12 @@
 
 quick_select (nth_element)
 
+## Cargo.toml
+```toml
+[dependencies]
+binheap = { git = "https://github.com/bave/qselect.git" }
+```
+
 ## example
 ```rust
 extern crate qselect;
