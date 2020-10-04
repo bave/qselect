@@ -1,6 +1,6 @@
 # qselect
 
-quick\_select (nth_element)
+quick_select (nth_element)
 
 ## example
 ```rust
