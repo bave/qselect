@@ -29,8 +29,8 @@ where T: Ord
     }
 }
 
-pub fn part_indirect<F>(array: &mut [usize], left: usize, right: usize, f: &F) -> usize
-where F: Fn(usize) -> usize
+pub fn part_indirect<T, F>(array: &mut [usize], left: usize, right: usize, f: &F) -> usize
+where T: PartialOrd, F: Fn(usize) -> T
 {
     let mut i = left;
     for j in left..right {
@@ -43,8 +43,8 @@ where F: Fn(usize) -> usize
     return i;
 }
 
-pub fn qselect_indirect<F>(array: &mut [usize], left: usize, right: usize, nth: usize, key: &F)
-where F: Fn(usize) -> usize
+pub fn qselect_indirect<T, F>(array: &mut [usize], left: usize, right: usize, nth: usize, key: &F)
+where T: PartialOrd, F: Fn(usize) -> T
 {
     if right <= left { return; }
     let i = part_indirect(array, left, right, key);
@@ -76,7 +76,7 @@ mod tests {
         //print!("{:?}\n", b);
         //let mut v = vec![1,2,3,4,5,6,7,8,9];
 
-        let b : Vec<usize> = vec![10,90,20,80,30,70,40,60,50];
+        let b : Vec<f64> = vec![10.0,90.0,20.0,80.0,30.0,70.0,40.0,60.0,50.0];
         for i in 0..10 {
             let mut v : Vec<usize> = vec![0,1,2,3,4,5,6,7,8];
             let len = v.len();
