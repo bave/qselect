@@ -1,5 +1,7 @@
 # qselect
 
+![Rust](https://github.com/bave/qselect/workflows/Rust/badge.svg)
+
 quick_select (nth_element)
 
 ## Cargo.toml
