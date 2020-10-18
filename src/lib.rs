@@ -58,10 +58,65 @@ where T: PartialOrd, F: Fn(usize) -> T
     }
 }
 
+pub fn lomuto<T>(array: &mut [T], left: usize, right: usize) -> usize
+where T: PartialOrd
+{
+    let mut i = left;
+    for j in left .. (right-1) {
+        if &array[j] <= &array[right] {
+            array.swap(i, j);
+            i += 1;
+        }
+    }
+    array.swap(i, right);
+    return i;
+}
+
+
+pub fn hoare<T>(array: &mut[T], left: usize, right: usize) -> usize
+where T: PartialOrd
+{
+    let mut i:i64 = left as i64 - 1;
+    let mut j:i64 = right as i64 + 1;
+    loop {
+        i += 1;
+        while &array[i as usize] < &array[left] {
+            i += 1;
+        }
+        j = j - 1;
+        while &array[j as usize] > &array[left] {
+            j -= 1;
+        }
+        if i >= j {
+            return j as usize;
+        }
+        array.swap(i as usize, j as usize);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
+    #[test]
+    fn test_hoare() {
+        let mut v : Vec<u64> = vec![10, 1, 9, 2, 8, 3, 7, 4, 6, 5];
+        print!("vec: {:?}\n", v);
+        let len = v.len();
+        let i = hoare(&mut v, 0, len-1);
+        print!("vec: {:?}, i:{}\n", v, i);
+    }
+
+    #[test]
+    fn test_lomuto() {
+        let mut v : Vec<u64> = vec![10, 1, 9, 2, 8, 3, 7, 4, 6, 5];
+        print!("vec: {:?}\n", v);
+        let len = v.len();
+        let i = lomuto(&mut v, 0, len-1);
+        print!("vec: {:?}, i:{}\n", v, i);
+    }
+
+    #[test]
     fn test() {
         for i in 0..10 {
             let mut v : Vec<u64> = vec![10, 1, 9, 2, 8, 3, 7, 4, 6, 5];
