@@ -1,4 +1,5 @@
 
+// lomuto partitioning
 pub fn part<T>(array: &mut [T], left: usize, right: usize) -> usize
 where T: Ord
 {
@@ -12,7 +13,6 @@ where T: Ord
     array.swap(i, right);
     return i;
 }
-
 
 pub fn qselect<T>(array: &mut [T], left: usize, right: usize, nth: usize)
 where T: Ord
@@ -60,7 +60,8 @@ where T: PartialOrd, F: Fn(usize) -> T
     }
 }
 
-pub fn lomuto<T>(array: &mut [T], left: usize, right: usize) -> usize
+//sample code of lomuto partitioning
+fn lomuto<T>(array: &mut [T], left: usize, right: usize) -> usize
 where T: PartialOrd
 {
     let mut i = left;
@@ -74,8 +75,8 @@ where T: PartialOrd
     return i;
 }
 
-
-pub fn hoare<T>(array: &mut[T], left: usize, right: usize) -> usize
+//sample code of hoare partitioning
+fn hoare<T>(array: &mut[T], left: usize, right: usize) -> usize
 where T: PartialOrd
 {
     let mut i:i64 = left as i64 - 1;
