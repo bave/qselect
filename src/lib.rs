@@ -29,6 +29,7 @@ where T: Ord
     }
 }
 
+#[inline]
 pub fn part_indirect<T, F>(array: &mut [usize], left: usize, right: usize, f: &F) -> usize
 where T: PartialOrd, F: Fn(usize) -> T
 {
@@ -43,6 +44,7 @@ where T: PartialOrd, F: Fn(usize) -> T
     return i;
 }
 
+#[inline]
 pub fn qselect_indirect<T, F>(array: &mut [usize], left: usize, right: usize, nth: usize, key: &F)
 where T: PartialOrd, F: Fn(usize) -> T
 {
