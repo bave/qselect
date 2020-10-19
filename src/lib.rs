@@ -61,6 +61,7 @@ where T: PartialOrd, F: Fn(usize) -> T
 }
 
 //sample code of lomuto partitioning
+#[allow(dead_code)]
 fn lomuto<T>(array: &mut [T], left: usize, right: usize) -> usize
 where T: PartialOrd
 {
@@ -76,6 +77,7 @@ where T: PartialOrd
 }
 
 //sample code of hoare partitioning
+#[allow(dead_code)]
 fn hoare<T>(array: &mut[T], left: usize, right: usize) -> usize
 where T: PartialOrd
 {
@@ -103,7 +105,8 @@ mod tests {
 
     #[test]
     fn test_hoare() {
-        let mut v : Vec<u64> = vec![10, 1, 9, 2, 8, 3, 7, 4, 6, 5];
+        //let mut v : Vec<u64> = vec![10, 1, 9, 2, 8, 3, 7, 4, 6, 5];
+        let mut v : Vec<u64> = vec![2,15,6,7,1,16,10,11,13,9,12,3,4,8,5,14];
         print!("vec: {:?}\n", v);
         let len = v.len();
         let i = hoare(&mut v, 0, len-1);
@@ -112,7 +115,8 @@ mod tests {
 
     #[test]
     fn test_lomuto() {
-        let mut v : Vec<u64> = vec![10, 1, 9, 2, 8, 3, 7, 4, 6, 5];
+        //let mut v : Vec<u64> = vec![10, 1, 9, 2, 8, 3, 7, 4, 6, 5];
+        let mut v : Vec<u64> = vec![2,15,6,7,1,16,10,11,13,9,12,3,4,8,5,14];
         print!("vec: {:?}\n", v);
         let len = v.len();
         let i = lomuto(&mut v, 0, len-1);
