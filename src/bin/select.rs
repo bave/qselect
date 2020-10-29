@@ -1,3 +1,4 @@
+//echo "1 2 3 4" | cargo run --release  --bin part
 
 extern crate qselect;
 use self::qselect::*;
