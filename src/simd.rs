@@ -63,7 +63,8 @@ unsafe fn mm256_mask_compressstoreu_ps(array: *mut f32, mask: u8, src: __m256)
         6 => { _mm256_blend_ps(_mm256_loadu_ps(array), compress, 0x3f) },
         7 => { _mm256_blend_ps(_mm256_loadu_ps(array), compress, 0x7f) },
         8 => { _mm256_blend_ps(_mm256_loadu_ps(array), compress, 0xff) },
-        _ => { assert!(false); _mm256_loadu_ps(array) },
+        //_ => { assert!(false); _mm256_loadu_ps(array) },
+        _ => { unreachable!() },
     };
     _mm256_storeu_ps(array, ret);
 }
@@ -89,7 +90,8 @@ unsafe fn  mm256_mask_compressstoreu_epi32(array: *mut i32, mask: u8, src: __m25
         6 => { _mm256_blend_epi32(_mm256_loadu_si256(array as *mut __m256i), compress, 0x3f) },
         7 => { _mm256_blend_epi32(_mm256_loadu_si256(array as *mut __m256i), compress, 0x7f) },
         8 => { _mm256_blend_epi32(_mm256_loadu_si256(array as *mut __m256i), compress, 0xff) },
-        _ => { assert!(false); _mm256_loadu_si256(array as *mut __m256i) },
+        //_ => { assert!(false); _mm256_loadu_si256(array as *mut __m256i) },
+        _ => { unreachable!() },
     };
     _mm256_storeu_si256(array as *mut __m256i, ret);
 }
