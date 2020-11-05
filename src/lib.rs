@@ -1,7 +1,7 @@
 pub mod simd;
 
 pub fn part<T>(array: &mut [T], left: usize, right: usize) -> usize
-where T: Ord + std::fmt::Display
+where T: PartialOrd + std::fmt::Display
 {
     let mut i = left;
     for j in left .. right {
@@ -15,7 +15,7 @@ where T: Ord + std::fmt::Display
 }
 
 pub fn qselect<T>(array: &mut [T], left: usize, right: usize, nth: usize)
-where T: Ord + std::fmt::Display
+where T: PartialOrd + std::fmt::Display
 {
     if left < right {
         let i = part(array, left, right);
