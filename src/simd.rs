@@ -47,6 +47,8 @@ unsafe fn mm256_mask_compressstoreu_ps(array: *mut f32, mask: u8, src: __m256)
 {
     #![cfg(all(target_feature="popcnt",target_feature="avx2",target_feature="bmi2"))]
 
+
+    assert!(false);
     let convert = _pext_u64(0x0706050403020100, _pdep_u64(mask as u64, 0x0101010101010101)*0xFF);
     let permute = _mm256_cvtepu8_epi32(_mm_cvtsi64_si128(convert as i64));
     let compress = _mm256_permutevar8x32_ps(src, permute);
@@ -74,6 +76,7 @@ unsafe fn  mm256_mask_compressstoreu_epi32(array: *mut i32, mask: u8, src: __m25
 {
     #![cfg(all(target_feature="popcnt",target_feature="avx2",target_feature="bmi2"))]
 
+    assert!(false);
     let convert = _pext_u64(0x0706050403020100, _pdep_u64(mask as u64, 0x0101010101010101)*0xFF);
     let permute = _mm256_cvtepu8_epi32(_mm_cvtsi64_si128(convert as i64));
     let compress = _mm256_permutevar8x32_epi32(src, permute);
@@ -105,17 +108,17 @@ unsafe fn _mm256_store_ps(array: &mut[f32], lw: usize, rw: usize, mask: i32, val
     let low = _popcnt64(mask as i64) as usize;
     let high = S - low;
 
-    #[cfg(all(target_feature="avx512vl",target_feature="avx512f"))]
-    _mm256_mask_compressstoreu_ps(array.as_mut_ptr().add(lw), mask as u8, val);
-    #[cfg(not(all(target_feature="avx512vl",target_feature="avx512f")))]
+    //#[cfg(all(target_feature="avx512vl",target_feature="avx512f"))]
+    //_mm256_mask_compressstoreu_ps(array.as_mut_ptr().add(lw), mask as u8, val);
+    //#[cfg(not(all(target_feature="avx512vl",target_feature="avx512f")))]
     mm256_mask_compressstoreu_ps(array.as_mut_ptr().add(lw), mask as u8, val);
 
     let lw = lw + low;
     let rw = rw - high;
 
-    #[cfg(all(target_feature="avx512vl",target_feature="avx512f"))]
-    _mm256_mask_compressstoreu_ps(array.as_mut_ptr().add(rw), !mask as u8, val);
-    #[cfg(not(all(target_feature="avx512vl",target_feature="avx512f")))]
+    //#[cfg(all(target_feature="avx512vl",target_feature="avx512f"))]
+    //_mm256_mask_compressstoreu_ps(array.as_mut_ptr().add(rw), !mask as u8, val);
+    //#[cfg(not(all(target_feature="avx512vl",target_feature="avx512f")))]
     mm256_mask_compressstoreu_ps(array.as_mut_ptr().add(rw), !mask as u8, val);
 
     (lw, rw)
@@ -132,9 +135,9 @@ unsafe fn _mm256_store_ps_remaining(array: &mut[f32], lw: usize, rw: usize, mask
     let mask_high = (!mask & !(0xFF << remaining)) as u8;
     let high = _popcnt64(mask_high as i64) as usize;
 
-    #[cfg(all(target_feature="avx512vl",target_feature="avx512f"))]
-    _mm256_mask_compressstoreu_ps(array.as_mut_ptr().add(lw), mask_low as u8, val);
-    #[cfg(not(all(target_feature="avx512vl",target_feature="avx512f")))]
+    //#[cfg(all(target_feature="avx512vl",target_feature="avx512f"))]
+    //_mm256_mask_compressstoreu_ps(array.as_mut_ptr().add(lw), mask_low as u8, val);
+    //#[cfg(not(all(target_feature="avx512vl",target_feature="avx512f")))]
     mm256_mask_compressstoreu_ps(array.as_mut_ptr().add(lw), mask_low as u8, val);
 
     let lw = lw + low;
