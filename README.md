@@ -63,3 +63,11 @@ ref_vec: [0, 2, 4, 6, 8, 7, 5, 3, 1]
 ref_vec: [0, 2, 4, 6, 8, 5, 3, 7, 1]
 [10, 90, 20, 80, 30, 70, 40, 60, 50]
 ```
+
+
+<!--
+RUSTFLAGS="-C target-cpu=native -C target-feature=+avx2,+avx512vl,+avx512f,+popcnt,+bmi2" cargo run --release --bin simd_direct
+RUSTFLAGS="-C target-cpu=native -C target-feature=+avx2,+avx512vl,+avx512f,+popcnt,+bmi2" cargo run --release --bin simd_indirect
+-->
+
+
